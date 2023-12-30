@@ -49,11 +49,11 @@ public class MenuUI : MonoBehaviour
             var IsData = DataManager.Inst.LoadGameData();
             if (IsData)
             {
-                StartCoroutine(CreateAlarmMoveCo());
+                StartCoroutine(CreateAlarmMoveDownCo());
             }
             else
             {
-                StartCoroutine(CreateAlarmMoveCo());
+                StartCoroutine(CreateAlarmMoveDownCo());
             }
         });
 
@@ -70,16 +70,27 @@ public class MenuUI : MonoBehaviour
 
     #region 코루틴
     /** 알람 UI를 생성하고 움직인다 */
-    private IEnumerator CreateAlarmMoveCo()
+    private IEnumerator CreateAlarmMoveDownCo()
     {
-        var Alarm = CreateUIPrefab.CreateAlarmUI(this.gameObject);
-        Alarm.transform.localPosition = new Vector3(0, 700, 0);
-        Alarm.transform.DOLocalMove(new Vector3(0, -300, 0), 0.5f).SetEase(Ease.Unset)
-            .SetRelative().SetLoops(2, LoopType.Yoyo).SetAutoKill();
+        var AlarmComponent = this.gameObject.GetComponentInChildren<AlarmUI>();
+        if(AlarmComponent == null) {
+            var Alarm = CreateUIPrefab.CreateAlarmUI(this.gameObject);
+            Alarm.transform.localPosition = new Vector3(0, 700, 0);
+            Alarm.transform.DOLocalMove(new Vector3(0, -300, 0), 0.6f).SetEase(Ease.Unset)
+                .SetRelative().SetAutoKill();//SetLoops(2, LoopType.Yoyo).SetAutoKill();
 
-        yield return new WaitForSeconds(1.2f);
+            yield return new WaitForSeconds(0.8f);
 
-        Destroy(Alarm.gameObject);
+            Alarm.transform.DOLocalMove(new Vector3(0, 300, 0), 0.3f).SetEase(Ease.Unset).SetRelative().SetAutoKill();
+
+            yield return new WaitForSeconds(0.7f);
+
+            Destroy(Alarm.gameObject);
+        }
+        else
+        {
+            yield return null;
+        }
     }
     #endregion // 코루틴
 }
