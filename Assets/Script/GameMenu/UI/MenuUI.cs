@@ -8,23 +8,23 @@ public class MenuUI : MonoBehaviour
 {
     #region 변수
     [Header("=====> 옵션 버튼 세팅 <=====")]
-    [SerializeField] private Ease SelectEase;
-    [SerializeField] private GameObject OptionSettingGroup;
-    [SerializeField] private Button OptionSettingButton;
+    [SerializeField] private Ease selectEase;
+    [SerializeField] private GameObject optionSettingGroup;
+    [SerializeField] private Button optionSettingButton;
 
     [Header("=====> 불러오기 버튼 세팅 <=====")]
-    [SerializeField] private Button LoadDataButton;
+    [SerializeField] private Button loadDataButton;
 
     [Header("=====> 게임종료 버튼 세팅 <=====")]
-    [SerializeField] private Button GameExitButton;
+    [SerializeField] private Button gameExitButton;
 
     [Header("=====> 게임시작 버튼 세팅 <=====")]
     [SerializeField] private Button GameStarButton;
 
     [Header("=====> 옵션 설정창 세팅 <=====")]
-    [SerializeField] private Button OptionExitButton;
-    [SerializeField] private Slider BGMSlider;
-    [SerializeField] private Slider SFXSlider;
+    [SerializeField] private Button optionExitButton;
+    [SerializeField] private Slider bgmSlider;
+    [SerializeField] private Slider sfxSlider;
     #endregion // 변수
 
     #region 함수
@@ -37,17 +37,17 @@ public class MenuUI : MonoBehaviour
     /** 버튼 초기값을 세팅한다 */
     private void InitButton()
     {
-        OptionSettingButton.onClick.AddListener(() =>{
-            OptionSettingGroup.transform.DOLocalMove(new Vector3(0, -1200, 0), 0.4f).SetEase(SelectEase).SetRelative();
+        optionSettingButton.onClick.AddListener(() =>{
+            optionSettingGroup.transform.DOLocalMove(new Vector3(0, -1200, 0), 0.4f).SetEase(selectEase).SetRelative();
         });
 
-        OptionExitButton.onClick.AddListener(() =>{
-            OptionSettingGroup.transform.DOLocalMove(new Vector3(0, 1200, 0), 0.4f).SetEase(SelectEase).SetRelative();
+        optionExitButton.onClick.AddListener(() =>{
+            optionSettingGroup.transform.DOLocalMove(new Vector3(0, 1200, 0), 0.4f).SetEase(selectEase).SetRelative();
         });
 
-        LoadDataButton.onClick.AddListener(() =>{
-            var IsData = DataManager.Inst.LoadGameData();
-            if (IsData)
+        loadDataButton.onClick.AddListener(() =>{
+            var isData = DataManager.Inst.LoadGameData();
+            if (isData)
             {
                 StartCoroutine(CreateAlarmMoveDownCo());
             }
@@ -57,7 +57,7 @@ public class MenuUI : MonoBehaviour
             }
         });
 
-        GameExitButton.onClick.AddListener(() =>{
+        gameExitButton.onClick.AddListener(() =>{
             // 유니티 종료
             Application.Quit();
         });
@@ -72,20 +72,21 @@ public class MenuUI : MonoBehaviour
     /** 알람 UI를 생성하고 움직인다 */
     private IEnumerator CreateAlarmMoveDownCo()
     {
-        var AlarmComponent = this.gameObject.GetComponentInChildren<AlarmUI>();
-        if(AlarmComponent == null) {
-            var Alarm = CreateUIPrefab.CreateAlarmUI(this.gameObject);
-            Alarm.transform.localPosition = new Vector3(0, 700, 0);
-            Alarm.transform.DOLocalMove(new Vector3(0, -300, 0), 0.6f).SetEase(Ease.Unset)
+        var alarmComponent = this.gameObject.GetComponentInChildren<AlarmUI>();
+        if(alarmComponent == null) 
+        {
+            var alarm = CreateUIPrefab.CreateAlarmUI(this.gameObject);
+            alarm.transform.localPosition = new Vector3(0, 700, 0);
+            alarm.transform.DOLocalMove(new Vector3(0, -300, 0), 0.6f).SetEase(Ease.Unset)
                 .SetRelative().SetAutoKill();//SetLoops(2, LoopType.Yoyo).SetAutoKill();
 
             yield return new WaitForSeconds(0.8f);
 
-            Alarm.transform.DOLocalMove(new Vector3(0, 300, 0), 0.3f).SetEase(Ease.Unset).SetRelative().SetAutoKill();
+            alarm.transform.DOLocalMove(new Vector3(0, 300, 0), 0.3f).SetEase(Ease.Unset).SetRelative().SetAutoKill();
 
             yield return new WaitForSeconds(0.7f);
 
-            Destroy(Alarm.gameObject);
+            Destroy(alarm.gameObject);
         }
         else
         {

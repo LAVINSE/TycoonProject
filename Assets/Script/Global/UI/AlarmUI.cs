@@ -7,7 +7,7 @@ using DG.Tweening;
 public class AlarmUI : MonoBehaviour
 {
     #region 변수
-    [SerializeField] private TMP_Text Alarm_Text;
+    [SerializeField] private TMP_Text alarmText;
     #endregion // 변수
 
     #region 프로퍼티
@@ -15,9 +15,9 @@ public class AlarmUI : MonoBehaviour
 
     #region 함수
     /** 알람 팝업 초기설정을 한다 */
-    public void Init(string AlarmText)
+    public void Init(string alarmText)
     {
-        Alarm_Text.text = AlarmText;
+        this.alarmText.text = alarmText;
     }
     #endregion // 함수
 }
