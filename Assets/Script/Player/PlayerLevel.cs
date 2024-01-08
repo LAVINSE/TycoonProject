@@ -6,46 +6,47 @@ using UnityEngine.Analytics;
 
 public class PlayerLevel : MonoBehaviour
 {
-    public int playerLevel;
-    public int playerExp;
-    public int ind;
+    #region ë³€ìˆ˜
+    private PlayerStats playerStats;
+    #endregion // ë³€ìˆ˜
 
-    #region ÇÔ¼ö
-    /** °æÇèÄ¡ È¹µæ */
+    #region í•¨ìˆ˜
+    /** ê²½í—˜ì¹˜ íšë“ */
     public void GainExp(int expAmount)
     {
-        playerExp += expAmount;
+        playerStats.PlayerLevelRequireExp += expAmount;
         CheckForLevel();
     }
 
-    /** °æÇèÄ¡ È¹µæ·®¿¡ µû¸¥ ·¹º§ Ã¼Å© */
+    /** ê²½í—˜ì¹˜ íšë“ëŸ‰ì— ë”°ë¥¸ ë ˆë²¨ ì²´í¬ */
     private void CheckForLevel()
     {
         while (true)
         {
-            // ´ÙÀ½·¹º§ °æÇèÄ¡ ¿ä±¸·® °¡Á®¿À±â
-            int requiredExp = DataManager.Inst.GetExpForLevel(playerLevel + 1);
-            ind = DataManager.Inst.GetExpForLevel(playerLevel + 1);
+            // ë‹¤ìŒë ˆë²¨ ê²½í—˜ì¹˜ ìš”êµ¬ëŸ‰ ê°€ì ¸ì˜¤ê¸°
+            int requiredExp = DataManager.Inst.GetExpForLevel(playerStats.PlayerLevel + 1);
 
             if (requiredExp == 0) { break; }
-            if (playerExp < requiredExp) { break; }
+            if (playerStats.PlayerLevelRequireExp < requiredExp) { break; }
 
-            // ÇÃ·¹ÀÌ¾î °æÇèÄ¡°¡ ´ÙÀ½·¹º§¿¡ ÇÊ¿äÇÑ °æÇèÄ¡¸¦ ¸ğ¾ÒÀ» °æ¿ì
-            if (playerExp >= requiredExp)
+            // í”Œë ˆì´ì–´ ê²½í—˜ì¹˜ê°€ ë‹¤ìŒë ˆë²¨ì— í•„ìš”í•œ ê²½í—˜ì¹˜ë¥¼ ëª¨ì•˜ì„ ê²½ìš°
+            if (playerStats.PlayerLevelRequireExp >= requiredExp)
             {
                 Levelup();
             }
 
-            playerExp -= requiredExp;
+            playerStats.PlayerLevelRequireExp -= requiredExp;
         }
     }
 
-    /** ·¹º§ Áõ°¡ */
+    /** ë ˆë²¨ ì¦ê°€ */
     private void Levelup()
     {
-        playerLevel++;
-        // TODO : ·¹º§ Áõ°¡½Ã Áõ°¡ÇÏ´Â ½ºÅİ? PlayerStats.()
-        Debug.Log("·¹º§¾÷");
+        playerStats.PlayerLevel++;
+
+        // ë ˆë²¨ì—… >> ìŠ¤í…Ÿí¬ì¸íŠ¸ 2 ì¦ê°€
+        playerStats.IncreaseStatPoint();
+        Debug.Log("ë ˆë²¨ì—…");
     }
-    #endregion // ÇÔ¼ö
+    #endregion // í•¨ìˆ˜
 }

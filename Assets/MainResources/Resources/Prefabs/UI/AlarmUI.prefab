@@ -51,7 +51,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2ebb4ed715d90f4dbcf53800162983b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Alarm_Text: {fileID: 6466905294835598533}
+  alarmText: {fileID: 6466905294835598533}
 --- !u!1 &6466905294835598535
 GameObject:
   m_ObjectHideFlags: 0

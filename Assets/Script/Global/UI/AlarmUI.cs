@@ -6,18 +6,18 @@ using DG.Tweening;
 
 public class AlarmUI : MonoBehaviour
 {
-    #region º¯¼ö
+    #region ë³€ìˆ˜
     [SerializeField] private TMP_Text alarmText;
-    #endregion // º¯¼ö
+    #endregion // ë³€ìˆ˜
 
-    #region ÇÁ·ÎÆÛÆ¼
-    #endregion // ÇÁ·ÎÆÛÆ¼
+    #region í”„ë¡œí¼í‹°
+    #endregion // í”„ë¡œí¼í‹°
 
-    #region ÇÔ¼ö
-    /** ¾Ë¶÷ ÆË¾÷ ÃÊ±â¼³Á¤À» ÇÑ´Ù */
+    #region í•¨ìˆ˜
+    /** ì•ŒëŒ íŒì—… ì´ˆê¸°ì„¤ì •ì„ í•œë‹¤ */
     public void Init(string alarmText)
     {
         this.alarmText.text = alarmText;
     }
-    #endregion // ÇÔ¼ö
+    #endregion // í•¨ìˆ˜
 }

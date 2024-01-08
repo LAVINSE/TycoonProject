@@ -4,17 +4,26 @@ using UnityEngine;
 
 public class CreateUIPrefab : MonoBehaviour
 {
-    #region º¯¼ö
-    #endregion // º¯¼ö
+    #region ë³€ìˆ˜
+    #endregion // ë³€ìˆ˜
 
-    #region ÇÔ¼ö
-    /** ¾Ë¶÷ UI¸¦ »ı¼ºÇÑ´Ù */
-    public static AlarmUI CreateAlarmUI(GameObject RootObject)
+    #region í•¨ìˆ˜
+    /** ì•ŒëŒ UIë¥¼ ìƒì„±í•œë‹¤ */
+    public static AlarmUI CreateAlarmUI(GameObject parentObject)
     {
-        var Alarm = CFactory.CreateCloneObj<AlarmUI>("Alarm", Resources.Load<GameObject>("Prefabs/UI/AlarmUI"),
-            RootObject, Vector3.zero, Vector3.one, Vector3.zero);
+        var alarm = CFactory.CreateCloneObj<AlarmUI>("Alarm", Resources.Load<GameObject>("Prefabs/UI/AlarmUI"),
+            parentObject, Vector3.zero, Vector3.one, Vector3.zero);
 
-        return Alarm;
+        return alarm;
     }
-    #endregion // ÇÔ¼ö
+
+    /** í”Œë ˆì´ì–´ ì •ë³´ UIë¥¼ ìƒì„±í•œë‹¤ */
+    public static PlayerInfoUI CreatePlayerInfoUI(GameObject parentObject)
+    {
+        var info = CFactory.CreateCloneObj<PlayerInfoUI>("PlayerInfo", Resources.Load<GameObject>("Prefabs/UI/PlayerInfoUI"),
+            parentObject, Vector3.zero, Vector3.one, Vector3.zero);
+
+        return info;
+    }
+    #endregion // í•¨ìˆ˜
 }

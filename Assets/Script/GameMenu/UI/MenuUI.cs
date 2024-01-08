@@ -6,35 +6,35 @@ using UnityEngine.UI;
 
 public class MenuUI : MonoBehaviour
 {
-    #region º¯¼ö
-    [Header("=====> ¿É¼Ç ¹öÆ° ¼¼ÆÃ <=====")]
+    #region ë³€ìˆ˜
+    [Header("=====> ì˜µì…˜ ë²„íŠ¼ ì„¸íŒ… <=====")]
     [SerializeField] private Ease selectEase;
     [SerializeField] private GameObject optionSettingGroup;
     [SerializeField] private Button optionSettingButton;
 
-    [Header("=====> ºÒ·¯¿À±â ¹öÆ° ¼¼ÆÃ <=====")]
+    [Header("=====> ë¶ˆëŸ¬ì˜¤ê¸° ë²„íŠ¼ ì„¸íŒ… <=====")]
     [SerializeField] private Button loadDataButton;
 
-    [Header("=====> °ÔÀÓÁ¾·á ¹öÆ° ¼¼ÆÃ <=====")]
+    [Header("=====> ê²Œì„ì¢…ë£Œ ë²„íŠ¼ ì„¸íŒ… <=====")]
     [SerializeField] private Button gameExitButton;
 
-    [Header("=====> °ÔÀÓ½ÃÀÛ ¹öÆ° ¼¼ÆÃ <=====")]
+    [Header("=====> ê²Œì„ì‹œì‘ ë²„íŠ¼ ì„¸íŒ… <=====")]
     [SerializeField] private Button GameStarButton;
 
-    [Header("=====> ¿É¼Ç ¼³Á¤Ã¢ ¼¼ÆÃ <=====")]
+    [Header("=====> ì˜µì…˜ ì„¤ì •ì°½ ì„¸íŒ… <=====")]
     [SerializeField] private Button optionExitButton;
     [SerializeField] private Slider bgmSlider;
     [SerializeField] private Slider sfxSlider;
-    #endregion // º¯¼ö
+    #endregion // ë³€ìˆ˜
 
-    #region ÇÔ¼ö
-    /** ÃÊ±âÈ­ */
+    #region í•¨ìˆ˜
+    /** ì´ˆê¸°í™” */
     private void Awake()
     {
         InitButton();
     }
 
-    /** ¹öÆ° ÃÊ±â°ªÀ» ¼¼ÆÃÇÑ´Ù */
+    /** ë²„íŠ¼ ì´ˆê¸°ê°’ì„ ì„¸íŒ…í•œë‹¤ */
     private void InitButton()
     {
         optionSettingButton.onClick.AddListener(() =>{
@@ -58,21 +58,22 @@ public class MenuUI : MonoBehaviour
         });
 
         gameExitButton.onClick.AddListener(() =>{
-            // À¯´ÏÆ¼ Á¾·á
+            // ìœ ë‹ˆí‹° ì¢…ë£Œ
             Application.Quit();
         });
 
         GameStarButton.onClick.AddListener(() =>{
-            // ¾À ÀÌµ¿
+            // ì”¬ ì´ë™
         });
     }
-    #endregion // ÇÔ¼ö
+    #endregion // í•¨ìˆ˜
 
-    #region ÄÚ·çÆ¾
-    /** ¾Ë¶÷ UI¸¦ »ı¼ºÇÏ°í ¿òÁ÷ÀÎ´Ù */
+    #region ì½”ë£¨í‹´
+    /** ì•ŒëŒ UIë¥¼ ìƒì„±í•˜ê³  ì›€ì§ì¸ë‹¤ */
     private IEnumerator CreateAlarmMoveDownCo()
     {
         var alarmComponent = this.gameObject.GetComponentInChildren<AlarmUI>();
+
         if(alarmComponent == null) 
         {
             var alarm = CreateUIPrefab.CreateAlarmUI(this.gameObject);
@@ -93,5 +94,5 @@ public class MenuUI : MonoBehaviour
             yield return null;
         }
     }
-    #endregion // ÄÚ·çÆ¾
+    #endregion // ì½”ë£¨í‹´
 }
