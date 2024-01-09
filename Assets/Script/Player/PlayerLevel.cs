@@ -11,6 +11,12 @@ public class PlayerLevel : MonoBehaviour
     #endregion // 변수
 
     #region 함수
+    /** 초기화 */
+    private void Awake()
+    {
+        playerStats = GetComponent<PlayerStats>();
+    }
+
     /** 경험치 획득 */
     public void GainExp(int expAmount)
     {
@@ -42,10 +48,13 @@ public class PlayerLevel : MonoBehaviour
     /** 레벨 증가 */
     private void Levelup()
     {
-        playerStats.PlayerLevel++;
+        var sceneManager = CSceneManager.GetSceneManager<MainGameSceneManager>(CDefine.MainGameScene);
 
+        playerStats.PlayerLevel++;
         // 레벨업 >> 스텟포인트 2 증가
         playerStats.IncreaseStatPoint();
+        // UI 업데이트
+        sceneManager.PlayerInfoUIObject.GetComponent<PlayerInfoUI>().PlayerStatPointTextUpdate();
         Debug.Log("레벨업");
     }
     #endregion // 함수

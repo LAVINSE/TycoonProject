@@ -9,46 +9,65 @@ public class DataManager : CSingleton<DataManager>
     [System.Serializable]
     public class SaveData
     {
-        
+        public int PlayerMaxLevel;
+        public int PlayerLevel;
+        public int PlayerArchitectureLevel;
+        public int PlayerFriendshipLevel;
+        public int PlayerFindLevel;
+        public int PlayerAutoLevel;
+        public int PlayerElectricLevel;
+        public float PlayerLevelRequireExp;
+        public int PlayerStatPoint;
     }
 
-    #region º¯¼ö
-    [Header("=====> ÆÄÀÏ ¼³Á¤ <=====")]
+    #region ë³€ìˆ˜
+    [Header("=====> íŒŒì¼ ì„¤ì • <=====")]
     [SerializeField] private string gameDataFilePath;
     [SerializeField] private string expDataTableFilePath;
     [SerializeField] private string gameDataFileName = "DataFile";
     [SerializeField] private string expDataFileName = "LevelDataFile";
 
-    private Dictionary<int, int> ExpDic;
-    #endregion // º¯¼ö
+    private Dictionary<int, int> ExpDict;
+    #endregion // ë³€ìˆ˜
 
-    #region ÇÔ¼ö
-    /** ÃÊ±âÈ­ */
+    #region í”„ë¡œí¼í‹°
+    public PlayerStats PlayerStat;
+    #endregion // í”„ë¡œí¼í‹°
+
+    #region í•¨ìˆ˜
+    /** ì´ˆê¸°í™” */
+    public override void Awake()
+    {
+        base.Awake();
+        PlayerStat = GetComponent<PlayerStats>();
+    }
+
+    /** ì´ˆê¸°í™” */
     private void Start()
     {
         gameDataFilePath = Path.Combine(Application.dataPath + "/SaveData/", gameDataFileName);
         expDataTableFilePath = Path.Combine(Application.dataPath + "/SaveData/", expDataFileName);
 
-        // °ÔÀÓ µ¥ÀÌÅÍ ·Îµå
+        // ê²Œì„ ë°ì´í„° ë¡œë“œ
         LoadGameData();
-        // °æÇèÄ¡ µ¥ÀÌÅÍ ·Îµå
+        // ê²½í—˜ì¹˜ ë°ì´í„° ë¡œë“œ
         LoadExpTable();
     }
 
-    /** À¯´ÏÆ¼°¡ Á¾·áµÉ¶§ */
+    /** ìœ ë‹ˆí‹°ê°€ ì¢…ë£Œë ë•Œ */
     private void OnApplicationQuit()
     {           
         SaveGameData();
     }
 
-    /** °ÔÀÓ µ¥ÀÌÅÍ ·Îµå */
+    /** ê²Œì„ ë°ì´í„° ë¡œë“œ */
     public bool LoadGameData()
     {
         SaveData data = new SaveData();
 
         if (!File.Exists(gameDataFilePath))
         {
-            Debug.Log(" ºÒ·¯¿Ã µ¥ÀÌÅÍ°¡ ¾øÀ½ ");
+            Debug.Log(" ë¶ˆëŸ¬ì˜¬ ë°ì´í„°ê°€ ì—†ìŒ ");
             return false;
         }
         else
@@ -56,54 +75,74 @@ public class DataManager : CSingleton<DataManager>
             string loadJson = File.ReadAllText(gameDataFilePath);
             data = JsonUtility.FromJson<SaveData>(loadJson);
 
+            // ì €ì¥
             if(data != null)
             {
-                // ÀÎ°ÔÀÓ µ¥ÀÌÅÍ = Data.µ¥ÀÌÅÍ
+                // ì¸ê²Œì„ ë°ì´í„° = Data.ë°ì´í„°
+                PlayerStat.PlayerMaxLevel = data.PlayerMaxLevel;
+                PlayerStat.PlayerLevel = data.PlayerLevel;
+                PlayerStat.PlayerArchitectureLevel = data.PlayerArchitectureLevel;
+                PlayerStat.PlayerFriendshipLevel = data.PlayerFriendshipLevel;
+                PlayerStat.PlayerFindLevel = data.PlayerFindLevel;
+                PlayerStat.PlayerAutoLevel = data.PlayerAutoLevel;
+                PlayerStat.PlayerElectricLevel = data.PlayerElectricLevel;
+                PlayerStat.PlayerLevelRequireExp = data.PlayerLevelRequireExp;
+                PlayerStat.PlayerStatPoint = data.PlayerStatPoint;
             }
 
-            Debug.Log(" µ¥ÀÌÅÍ¸¦ ºÒ·¯¿Ô½À´Ï´Ù. ");
+            Debug.Log(" ë°ì´í„°ë¥¼ ë¶ˆëŸ¬ì™”ìŠµë‹ˆë‹¤. ");
             return true;
         }
     }
 
-    /** °ÔÀÓ µ¥ÀÌÅÍ ÀúÀå */
+    /** ê²Œì„ ë°ì´í„° ì €ì¥ */
     public void SaveGameData()
     {
         SaveData data = new SaveData();
 
-        // Data.µ¥ÀÌÅÍ = ÀÎ°ÔÀÓ µ¥ÀÌÅÍ
+        // ë¶ˆëŸ¬ì˜¤ê¸°
+        // Data.ë°ì´í„° = ì¸ê²Œì„ ë°ì´í„°
+        data.PlayerMaxLevel = PlayerStat.PlayerMaxLevel;
+        data.PlayerLevel = PlayerStat.PlayerLevel;
+        data.PlayerArchitectureLevel = PlayerStat.PlayerArchitectureLevel;
+        data.PlayerFriendshipLevel = PlayerStat.PlayerFriendshipLevel;
+        data.PlayerFindLevel = PlayerStat.PlayerFindLevel;
+        data.PlayerAutoLevel = PlayerStat.PlayerAutoLevel;
+        data.PlayerElectricLevel = PlayerStat.PlayerElectricLevel;
+        data.PlayerLevelRequireExp = PlayerStat.PlayerLevelRequireExp;
+        data.PlayerStatPoint = PlayerStat.PlayerStatPoint;
 
         string json = JsonUtility.ToJson(data, true);
 
         File.WriteAllText(gameDataFilePath, json);
     }
 
-    /** Exp µ¥ÀÌÅÍ ·Îµå */
+    /** Exp ë°ì´í„° ë¡œë“œ */
     public void LoadExpTable()
     {
-        ExpDic = new Dictionary<int, int>();
+        ExpDict = new Dictionary<int, int>();
 
         if (File.Exists(expDataTableFilePath))
         {
             string json = File.ReadAllText(expDataTableFilePath);
-            ExpDic = JsonConvert.DeserializeObject<Dictionary<int, int>>(json);
-            Debug.Log(" °æÇèÄ¡ Å×ÀÌºíÀ» ºÒ·¯¿Ô½À´Ï´Ù ");
+            ExpDict = JsonConvert.DeserializeObject<Dictionary<int, int>>(json);
+            Debug.Log(" ê²½í—˜ì¹˜ í…Œì´ë¸”ì„ ë¶ˆëŸ¬ì™”ìŠµë‹ˆë‹¤ ");
         }
         else
         {
-            Debug.Log("°æÇèÄ¡ Å×ÀÌºí ¾øÀ½");
+            Debug.Log("ê²½í—˜ì¹˜ í…Œì´ë¸” ì—†ìŒ");
         }
     }
 
-    /** ·¹º§º° °æÇèÄ¡ ¿ä±¸·® °¡Á®¿À±â */
+    /** ë ˆë²¨ë³„ ê²½í—˜ì¹˜ ìš”êµ¬ëŸ‰ ê°€ì ¸ì˜¤ê¸° */
     public int GetExpForLevel(int level)
     {
-        if (ExpDic.ContainsKey(level))
+        if (ExpDict.ContainsKey(level))
         {
-            return ExpDic[level];
+            return ExpDict[level];
         }
 
         return 0;
     }
-    #endregion // ÇÔ¼ö
+    #endregion // í•¨ìˆ˜
 }

@@ -1,3 +1,11 @@
 {
-    "asd": "sdfasd"
+    "PlayerMaxLevel": 0,
+    "PlayerLevel": 0,
+    "PlayerArchitectureLevel": 0,
+    "PlayerFriendshipLevel": 0,
+    "PlayerFindLevel": 0,
+    "PlayerAutoLevel": 0,
+    "PlayerElectricLevel": 0,
+    "PlayerLevelRequireExp": 0.0,
+    "PlayerStatPoint": 0
 }
