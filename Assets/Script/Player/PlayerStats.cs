@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class PlayerStats : MonoBehaviour
 {
+    #region 변수
+    #endregion // 변수
+
     #region 프로퍼티
     public int PlayerMaxLevel { get; set; } = 50;
     public int PlayerLevel { get; set; } = 0;
@@ -13,6 +16,7 @@ public class PlayerStats : MonoBehaviour
     public int PlayerAutoLevel { get; set; } = 0;
     public int PlayerElectricLevel { get; set; } = 0;
     public float PlayerLevelRequireExp { get; set; } = 0;
+
     public int PlayerStatPoint { get; set; } = 30;
     #endregion // 프로퍼티
 

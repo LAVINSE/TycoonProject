@@ -31,12 +31,13 @@ public class PlayerUpgradeUI : MonoBehaviour
     #endregion // 변수
 
     #region 프로퍼티
-    public PlayerInit PlayerTest;
-    public PlayerStats PlayerStat;
+    public PlayerInit PlayerTest { get; set; }
+    public PlayerStats PlayerStat { get; set; }
+    public PlayerInfoUI PlayerInfo { get; set; }
     #endregion // 프로퍼티
 
     #region 함수
-    /** 업그레이드 이미지 슬라이더를 갱신한다 */
+    /** 업그레이드 이미지 슬라이더, 개수를 갱신한다 */
     private void UpdateUI(int maxAmount, int currentAmount)
     {
         upgradeFillImg.fillAmount = (float)currentAmount / maxAmount;
@@ -44,7 +45,7 @@ public class PlayerUpgradeUI : MonoBehaviour
     }
 
     /** 기본 설정을 한다 */
-    public void Init(string upgradeText, int upgradeCountText, EStatType statType)
+    public void Init(string upgradeText, int upgradeCountText,EStatType statType)
     {
         this.upgradeText.text = upgradeText;
         this.upgradeCountText.text = upgradeCountText.ToString();
@@ -85,6 +86,7 @@ public class PlayerUpgradeUI : MonoBehaviour
                 }
 
                 PlayerStat.PlayerStatPoint--;
+                PlayerInfo.PlayerStatPointTextUpdate();
                 // 테스트 스텟 동기화
                 PlayerTest.Init();
             }

@@ -385,10 +385,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c67733a889c8fec4da4afa828d7769a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  statType: -1
   upgradeButton: {fileID: 1547315162391592811}
   upgradeText: {fileID: 3187066966527444062}
   upgradeCountText: {fileID: 1969610530724565685}
   upgradeFillImg: {fileID: 2676114384644342694}
+  upgradeInfoUI: {fileID: 0}
 --- !u!1 &5106346787081554989
 GameObject:
   m_ObjectHideFlags: 0

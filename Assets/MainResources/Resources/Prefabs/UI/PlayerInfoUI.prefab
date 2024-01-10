@@ -544,6 +544,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b93a4f8fe92a6a45b37b018bed4d565, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  upgradeInfoDescSo: {fileID: 11400000, guid: 585ff0a44c49fb04491f777975d0abf7, type: 2}
   playerStatsText: {fileID: 3603095439883403605}
   UpgradeUIRootObject: {fileID: 4627537498443752836}
   closeButton: {fileID: 4627537497400049084}

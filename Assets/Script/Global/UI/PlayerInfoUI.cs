@@ -6,6 +6,10 @@ using UnityEngine.UI;
 
 public class PlayerInfoUI : MonoBehaviour
 {
+    /*
+     * 스탯 순서 { 건축, 호감도, 탐색, 자동화, 전기}
+     */
+
     #region 변수
     [Header("=====> 설정 <=====")]
     [SerializeField] private TMP_Text playerStatsText;
@@ -55,10 +59,12 @@ public class PlayerInfoUI : MonoBehaviour
             }
         }
 
+        // 컴포넌트, 기본설정
         for(int i = 0; i < UpgradeList.Count; i++)
         {
             UpgradeList[i].PlayerTest = playerTest;
             UpgradeList[i].PlayerStat = playerStat;
+            UpgradeList[i].PlayerInfo = this;
         }
 
         // UI 추가 할때마다 등록해야됨
