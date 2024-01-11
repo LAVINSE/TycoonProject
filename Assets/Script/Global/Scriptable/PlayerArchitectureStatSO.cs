@@ -9,7 +9,7 @@ public class PlayerArchitectureStatSO : ScriptableObject
     [TextArea]
     public string statDesc;
 
-    public float[] decreaseCraftingMaterials;
-    public float[] decreaseCraftingTime;
-    public float[] decreaseCraftingGold;
+    public float[] decreaseCraftingMaterials; // 제작 재료 감소
+    public float[] decreaseCraftingTime; // 제작 시간 감소
+    public float[] decreaseCraftingGold; // 제작 비용 감소
 }

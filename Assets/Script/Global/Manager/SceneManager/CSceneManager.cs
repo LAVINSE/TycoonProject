@@ -8,6 +8,8 @@ public abstract class CSceneManager : MonoBehaviour
     private static Dictionary<string, CSceneManager> SceneManagerDict = new Dictionary<string, CSceneManager>();
     public abstract string SceneName { get; }
 
+    public TimerManager TimerManagerComponent { get; set; }
+
     public GameObject PlayerObject { get; set; }
     public GameObject PlayerInfoUIObject { get; set; }
     #endregion // 프로퍼티 

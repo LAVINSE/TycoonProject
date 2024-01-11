@@ -9,5 +9,5 @@ public class PlayerAutoStatSO : ScriptableObject
     [TextArea]
     public string statDesc;
 
-    public float[] increaseGetResource;
+    public float[] increaseGetResource; // 자원 획득량 증가
 }

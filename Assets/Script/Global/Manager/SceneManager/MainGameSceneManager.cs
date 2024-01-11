@@ -17,6 +17,7 @@ public class MainGameSceneManager : CSceneManager
     {
         base.Awake();
         PlayerObject = playerObject;
+        TimerManagerComponent = GetComponent<TimerManager>();
     }
     #endregion // 함수
 }

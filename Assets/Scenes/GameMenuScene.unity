@@ -1053,9 +1053,9 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: PlayerLevel, Assembly-CSharp
-        m_MethodName: GainExp
-        m_Mode: 3
+        m_TargetAssemblyTypeName: TimerManager, Assembly-CSharp
+        m_MethodName: LoadGameTimer
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -3547,7 +3547,6 @@ MonoBehaviour:
   expDataTableFilePath: 
   gameDataFileName: DataFile
   expDataFileName: LevelDataFile
-  PlayerStat: {fileID: 0}
 --- !u!114 &2043210983
 MonoBehaviour:
   m_ObjectHideFlags: 0

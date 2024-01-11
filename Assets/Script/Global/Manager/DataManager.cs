@@ -9,6 +9,7 @@ public class DataManager : CSingleton<DataManager>
     [System.Serializable]
     public class SaveData
     {
+        // 스탯
         public int PlayerMaxLevel;
         public int PlayerLevel;
         public int PlayerArchitectureLevel;
@@ -18,6 +19,9 @@ public class DataManager : CSingleton<DataManager>
         public int PlayerElectricLevel;
         public float PlayerLevelRequireExp;
         public int PlayerStatPoint;
+
+        // 시간
+        public float GameTimer;
     }
 
     #region 변수
@@ -28,18 +32,15 @@ public class DataManager : CSingleton<DataManager>
     [SerializeField] private string expDataFileName = "LevelDataFile";
 
     private Dictionary<int, int> ExpDict;
+    private PlayerStats playerStat;
     #endregion // 변수
-
-    #region 프로퍼티
-    public PlayerStats PlayerStat;
-    #endregion // 프로퍼티
 
     #region 함수
     /** 초기화 */
     public override void Awake()
     {
         base.Awake();
-        PlayerStat = GetComponent<PlayerStats>();
+        playerStat = GetComponent<PlayerStats>();
     }
 
     /** 초기화 */
@@ -79,15 +80,19 @@ public class DataManager : CSingleton<DataManager>
             if(data != null)
             {
                 // 인게임 데이터 = Data.데이터
-                PlayerStat.PlayerMaxLevel = data.PlayerMaxLevel;
-                PlayerStat.PlayerLevel = data.PlayerLevel;
-                PlayerStat.PlayerArchitectureLevel = data.PlayerArchitectureLevel;
-                PlayerStat.PlayerFriendshipLevel = data.PlayerFriendshipLevel;
-                PlayerStat.PlayerFindLevel = data.PlayerFindLevel;
-                PlayerStat.PlayerAutoLevel = data.PlayerAutoLevel;
-                PlayerStat.PlayerElectricLevel = data.PlayerElectricLevel;
-                PlayerStat.PlayerLevelRequireExp = data.PlayerLevelRequireExp;
-                PlayerStat.PlayerStatPoint = data.PlayerStatPoint;
+                // 스탯
+                playerStat.PlayerMaxLevel = data.PlayerMaxLevel;
+                playerStat.PlayerLevel = data.PlayerLevel;
+                playerStat.PlayerArchitectureLevel = data.PlayerArchitectureLevel;
+                playerStat.PlayerFriendshipLevel = data.PlayerFriendshipLevel;
+                playerStat.PlayerFindLevel = data.PlayerFindLevel;
+                playerStat.PlayerAutoLevel = data.PlayerAutoLevel;
+                playerStat.PlayerElectricLevel = data.PlayerElectricLevel;
+                playerStat.PlayerLevelRequireExp = data.PlayerLevelRequireExp;
+                playerStat.PlayerStatPoint = data.PlayerStatPoint;
+
+                // 시간
+                PlayerPrefs.SetFloat("GameTimer", data.GameTimer);
             }
 
             Debug.Log(" 데이터를 불러왔습니다. ");
@@ -102,15 +107,23 @@ public class DataManager : CSingleton<DataManager>
 
         // 불러오기
         // Data.데이터 = 인게임 데이터
-        data.PlayerMaxLevel = PlayerStat.PlayerMaxLevel;
-        data.PlayerLevel = PlayerStat.PlayerLevel;
-        data.PlayerArchitectureLevel = PlayerStat.PlayerArchitectureLevel;
-        data.PlayerFriendshipLevel = PlayerStat.PlayerFriendshipLevel;
-        data.PlayerFindLevel = PlayerStat.PlayerFindLevel;
-        data.PlayerAutoLevel = PlayerStat.PlayerAutoLevel;
-        data.PlayerElectricLevel = PlayerStat.PlayerElectricLevel;
-        data.PlayerLevelRequireExp = PlayerStat.PlayerLevelRequireExp;
-        data.PlayerStatPoint = PlayerStat.PlayerStatPoint;
+        // 스탯
+        data.PlayerMaxLevel = playerStat.PlayerMaxLevel;
+        data.PlayerLevel = playerStat.PlayerLevel;
+        data.PlayerArchitectureLevel = playerStat.PlayerArchitectureLevel;
+        data.PlayerFriendshipLevel = playerStat.PlayerFriendshipLevel;
+        data.PlayerFindLevel = playerStat.PlayerFindLevel;
+        data.PlayerAutoLevel = playerStat.PlayerAutoLevel;
+        data.PlayerElectricLevel = playerStat.PlayerElectricLevel;
+        data.PlayerLevelRequireExp = playerStat.PlayerLevelRequireExp;
+        data.PlayerStatPoint = playerStat.PlayerStatPoint;
+
+        // 시간
+        // 시간값이 있을 경우
+        if (PlayerPrefs.HasKey("GameTimer"))
+        {
+            data.GameTimer = PlayerPrefs.GetFloat("GameTimer");
+        }
 
         string json = JsonUtility.ToJson(data, true);
 

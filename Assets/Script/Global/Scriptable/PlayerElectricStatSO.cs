@@ -9,5 +9,5 @@ public class PlayerElectricStatSO : ScriptableObject
     [TextArea]
     public string statDesc;
 
-    public float[] decreaseElectric;
+    public float[] decreaseElectric; // 전기 요구량 감소
 }
