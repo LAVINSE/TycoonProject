@@ -64,6 +64,7 @@ public class MenuUI : MonoBehaviour
 
         GameStarButton.onClick.AddListener(() =>{
             // 씬 이동
+            LoadingScene.LoadScene("MainGameScene");
         });
     }
     #endregion // 함수
