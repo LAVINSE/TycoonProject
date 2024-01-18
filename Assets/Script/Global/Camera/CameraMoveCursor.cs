@@ -15,8 +15,8 @@ public class CameraMoveCursor : MonoBehaviour
     [SerializeField] private float maxCamSize;
     [SerializeField] private SpriteRenderer mapRenderer;
 
-    private bool mouseLeftClick;
-    private bool mouseLeftClickDown;
+    private bool isMouseLeftClick;
+    private bool isMouseLeftClickDown;
     private float zoomValue;
     private float mapMinX;
     private float mapMinY;
@@ -48,22 +48,22 @@ public class CameraMoveCursor : MonoBehaviour
     private void CameraInput()
     {
         zoomValue = Input.GetAxis("Mouse ScrollWheel") * zoomSpeed;
-        mouseLeftClick = Input.GetMouseButton(0);
-        mouseLeftClickDown = Input.GetMouseButtonDown(0);
+        isMouseLeftClick = Input.GetMouseButton(0);
+        isMouseLeftClickDown = Input.GetMouseButtonDown(0);
     }
 
     /** 카메라를 드래그 한다 */
     private void CameraDrag()
     {
         // 마우스 왼쪽 클릭을 했을 경우 (한번)
-        if (mouseLeftClickDown)
+        if (isMouseLeftClickDown)
         {
             // 현재 위치 저장
             dragOrigin = mainCamera.ScreenToWorldPoint(Input.mousePosition);
         }
 
         // 마우스 왼쪽 클릭을 했을 경우 (지속)
-        if (mouseLeftClick)
+        if (isMouseLeftClick)
         {
             // 원래 위치와 변경된 위치의 차이
             Vector3 difference = dragOrigin - mainCamera.ScreenToWorldPoint(Input.mousePosition);

@@ -79,8 +79,7 @@ public class MenuUI : MonoBehaviour
         {
             var alarm = CreateUIPrefab.CreateAlarmUI(this.gameObject);
             alarm.transform.localPosition = new Vector3(0, 700, 0);
-            alarm.transform.DOLocalMove(new Vector3(0, -300, 0), 0.6f).SetEase(Ease.Unset)
-                .SetRelative().SetAutoKill();//SetLoops(2, LoopType.Yoyo).SetAutoKill();
+            alarm.transform.DOLocalMove(new Vector3(0, -300, 0), 0.6f).SetEase(Ease.Unset).SetRelative().SetAutoKill();
 
             yield return new WaitForSeconds(0.8f);
 

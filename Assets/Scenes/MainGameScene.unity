@@ -494,9 +494,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 332316192}
-  - component: {fileID: 332316193}
   - component: {fileID: 332316195}
+  - component: {fileID: 332316193}
   - component: {fileID: 332316194}
+  - component: {fileID: 332316196}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -563,6 +564,18 @@ MonoBehaviour:
   playerElectricLevel: 0
   playerLevelRequireExp: 0
   playerStatPoint: 0
+--- !u!114 &332316196
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 332316191}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 125a294364cb24f4a8f1227fdfff621a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &400035625
 GameObject:
   m_ObjectHideFlags: 0
