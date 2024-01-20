@@ -15,8 +15,6 @@ public class PlayerState : MonoBehaviour
 
     private bool isMouseLeftClickDown;
     private StateFSM[] stateArray;
-    private Ray ray;
-    private RaycastHit rayHit;
     #endregion // 변수
 
     #region 프로퍼티
@@ -55,7 +53,7 @@ public class PlayerState : MonoBehaviour
         }
     }
 
-    /** 상태 초기 설정 */
+    /** 상태 초기설정 */
     private void InitState()
     {
         // 상태 저장공간
