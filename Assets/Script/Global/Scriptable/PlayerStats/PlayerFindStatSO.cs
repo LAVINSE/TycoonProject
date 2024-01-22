@@ -7,8 +7,8 @@ public class PlayerFindStatSO : ScriptableObject
 {
     // 탐색
     [TextArea]
-    public string statDesc;
+    public string StatDesc;
 
-    public float[] decreasePlanetFindTime; // 행성 탐색시간 감소
-    public float[] decreaseFindGold; // 행성 탐색 골드 감소
+    public float[] DecreasePlanetFindTime; // 행성 탐색시간 감소
+    public float[] DecreaseFindGold; // 행성 탐색 골드 감소
 }

@@ -7,8 +7,8 @@ public class PlayerFriendshipStatSO : ScriptableObject
 {
     // 호감도
     [TextArea]
-    public string statDesc;
+    public string StatDesc;
 
-    public float[] decreaseEmigrationTime; // 이주 시간 감소
-    public float[] increaseFriendship; // NPC 호감도 증가
+    public float[] DecreaseEmigrationTime; // 이주 시간 감소
+    public float[] IncreaseFriendship; // NPC 호감도 증가
 }

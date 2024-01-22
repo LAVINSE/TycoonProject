@@ -10,5 +10,5 @@ public enum EBuildingType
 [CreateAssetMenu(fileName = "BuildingSO", menuName = "ScriptTable Obejects / Buildings / BuildingSO")]
 public class BuildingSO : ScriptableObject
 {
-    public EBuildingType buildingType;
+    public EBuildingType BuildingType;
 }
