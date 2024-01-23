@@ -4,15 +4,9 @@ using UnityEngine;
 
 public class QuestManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    #region 변수
+    #endregion // 변수
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    #region 함수
+    #endregion // 함수
 }
